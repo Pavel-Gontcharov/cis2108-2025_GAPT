@@ -1,72 +1,57 @@
 <?php
+
 class Db
 {
     // The database connection
     protected static $connection;
 
-    /**
-     * Connect to the database
-     *
-     * @return bool false on failure / mysqli MySQLi object instance on success
-     */
+    // Connect using config.ini
     public function connect()
     {
-        // Try and connect to the database
         if (!isset(self::$connection)) {
-            // Load configuration as an array. Use the actual location of your configuration file
-            $config = parse_ini_file('./config.ini');
-            self::$connection = new mysqli('localhost', $config['username'], $config['password'], $config['dbname']);
+            $configPath = __DIR__ . "/config.ini";
+            if (!file_exists($configPath)) {
+                die("Missing config.ini file.");
+            }
+
+            $config = parse_ini_file($configPath, true);
+            if (!isset($config['database'])) {
+                die("Missing [database] section in config.ini.");
+            }
+
+            self::$connection = new mysqli(
+                $config['database']['server'],
+                $config['database']['username'],
+                $config['database']['password'],
+                $config['database']['dbname']
+            );
+
+            if (self::$connection->connect_error) {
+                die("Connection failed: " . self::$connection->connect_error);
+            }
         }
 
-        // If connection was not successful, handle the error
-        if (self::$connection === false) {
-            // Handle error - notify administrator, log to a file, show an error screen, etc.
-            return false;
-        }
         return self::$connection;
     }
 
-    /**
-     * Query the database
-     *
-     * @param $query The query string
-     * @return mixed The result of the mysqli::query() function
-     */
+    // Query the database
     public function query($query)
     {
-        // Connect to the database
         $connection = $this->connect();
-
-        // Query the database
-        $result = $connection->query($query);
-
-        return $result;
+        return $connection->query($query);
     }
 
-    /**
-     * Fetch rows from the database (SELECT query)
-     *
-     * @param $query The query string
-     * @return bool False on failure / array Database rows on success
-     */
     public function select($query)
     {
-        $rows = array();
+        $rows = [];
         $result = $this->query($query);
-        if ($result === false) {
-            return false;
-        }
+        if ($result === false) return false;
         while ($row = $result->fetch_assoc()) {
             $rows[] = $row;
         }
         return $rows;
     }
 
-    /**
-     * Fetch the last error from the database
-     *
-     * @return string Database error message
-     */
     public function error()
     {
         $connection = $this->connect();
@@ -226,3 +211,6 @@ class Db
 
 
 }
+
+
+
