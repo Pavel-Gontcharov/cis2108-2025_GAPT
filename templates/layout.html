@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-MT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles/styles.css">
+    <title>{{ title }} - Dentist</title>
+    <link rel="icon" type="image/x-icon" href="assets/icons/toothicon.ico">
+    <meta name="description" content="Dental Studio. Where every smile is a work of art.">
+    <meta name="keywords" content="Dental Studio Excellence in Dentistry, Precision in Care.">
+
+</head>
+
+<body>
+    <header>
+
+        {% block nav_bar %}
+        {% endblock %}
+
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <div class="social">
+            <p class="social">find us on:</p>
+            <div class="social-icon">
+                <a href="https://www.facebook.com" target="_blank"><img src="assets/logos/facebook.png" alt="Facebook"></a>
+                <a href="https://www.tiktok.com" target="_blank"><img src="assets/logos/tiktok.png" alt="TikTok"></a>
+                <a href="https://www.instagram.com" target="_blank"><img src="assets/logos/ins.png" alt="Instagram"></a>
+            </div>
+        </div>
+        <div class="legal">
+            <p class="legal">&copy; 2025 Dentist, Sliema, Malta. All Rights Reserved..</p>
+            <p class="legal">Legal Policies</p>
+            <p class="legal">Powered by Pavel</p>
+        </div>
+
+    </footer>
+    <script src="scripts/script.js" async defer></script>
+</body>
+
+</html>

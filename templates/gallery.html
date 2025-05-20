@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block nav_bar %}
+
+{% include 'nav_bar_menu.html' with {'categories': categories} %}
+
+{% endblock %}
+
+{% block content %}
+
+<main style="background-image: url('https://palmdental.ca/wp-content/uploads/2023/03/palm-dental-clinic-office-1-900x1200.jpg'); background-size: cover; background-position: center;">
+
+    <h2 style="color: white;">Gallery</h2>
+
+    <div class="cards">
+
+        {% for image in gallery %}
+        <div class="card">
+
+            <div class="card-body">
+
+                <img src="{{ image.image }}" class="img" alt="{{ image.description }}">
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block nav_bar %}
+
+{% include 'nav_bar_menusee.html' with {'categories': categories} %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="hero" style="background-image: url('https://dentalclinicscanada.com/wp-content/uploads/dental-clinics-canada-homepage.jpg'); background-size: cover; background-position: center;">
+    <a class="navbar-brand" href="homesee.php">
+        <img class="pic" src="assets/icons/logos.jpg" alt="Dental Studio" style="width:305px; border-radius: 50%;">
+    </a>
+    <p><strong>Where every smile is crafted with precision and care.</em></strong></p>
+</div>
+
+<main class="home" style="background-image: url('https://media.istockphoto.com/id/1312918053/photo/defocused-background-and-copy-space-image-of-dental-office-with-dentist-chair-and-equipment.jpg?s=612x612&w=0&k=20&c=PgNcaNlZPpAOXBiwFJlTNe4vjvwqsP2mr2xnHt-Hhok='); background-size: cover; background-position: center;">
+    
+    <a href="homesee.php">Home</a>
+    <a href="aboutsee.php">About</a>
+    <a href="gallerysee.php">Gallery</a>
+    <a href="index.php">DBMS</a>
+    <a href="insertaddsee.php">Appointment</a>
+    <a href="loginprofile.php">Profile</a>
+    <a href="contactsee.php">Contact</a>
+
+
+</main>
+
+{% endblock %}
